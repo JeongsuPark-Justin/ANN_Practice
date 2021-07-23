@@ -1,0 +1,20 @@
+from google_images_download import google_images_download
+
+
+def imageCrawling(keyword, dir, num):
+    response = google_images_download.googleimagesdownload()
+    arguments = {"keywords": keyword, "limit": num, "chromedriver": "/home/EIEN443/chromedriver",
+                 "print_urls": False, "no_directory": True, "output_directory": dir}
+    paths = response.download(arguments)
+    print(paths)
+
+
+imageCrawling('Indian elephant', './datasets/crawl/train/indian_elephant/', 200)
+imageCrawling('African elephant', './datasets/crawl/train/african_elephant/', 200)
+
+imageCrawling('Indian elephant', './datasets/crawl/val/indian_elephant/', 200)
+imageCrawling('African elephant', './datasets/crawl/val/african_elephant/', 200)
+
+imageCrawling('Indian elephant', './datasets/crawl/test/indian_elephant/', 200)
+imageCrawling('African elephant', './datasets/crawl/test/african_elephant/', 200)
+

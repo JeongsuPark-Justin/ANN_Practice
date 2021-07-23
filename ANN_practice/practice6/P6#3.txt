@@ -1,0 +1,8 @@
+• 앞의 실습문제들을 기반으로 할 때 IMDB text data에서 vector
+형태로 바뀐 input은 어떤 의미를 가지고 있는지 설명하세요.
+
+vector 형태로 바뀐 input data는 Sequences X Dimension의 크기를 가지며 각각의 단어에 해당하는 word index만 1이고 나머지 index는 모두 0을 가진다.
+
+ 벡터로 가지게 되고 그 단어의 특정 index만 1로 가지고 나머지 index는 0으로 가진다.
+
+vectorize를 하면 각각의 input에 대응하는 word index에 1을 입력하고, 나머지 index에는 모두 0을 입력한다.

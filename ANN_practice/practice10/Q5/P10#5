@@ -1,0 +1,16 @@
+def build_model():
+    x = layers.Input(shape=input_shape)
+    conv_ws = layers.Conv2D(32, (3, 3))(x)
+    conv_output = layers.Activation('relu')(conv_ws)
+    a = layers.MaxPooling2D((2, 2))(conv_output)
+    conv_ws2 = layers.Conv2D(64, (3, 3))(a)
+    conv_output2 = layers.Activation('relu')(conv_ws2)
+    b = layers.MaxPooling2D((2, 2))(conv_output2)
+    c = layers.Flatten()(b)
+    hidden_ws = layers.Dense(512)(c)
+    hidden_output = layers.Activation('relu')(hidden_ws)
+    y_ws = layers.Dense(1)(hidden_output)
+    y = layers.Activation('sigmoid')(y_ws)
+    model = models.Model(x, y)
+    model.compile(optimizer=optimizers.RMSprop(lr=1e-4), 	  	loss='binary_crossentropy', metrics=['accuracy'])
+    return model

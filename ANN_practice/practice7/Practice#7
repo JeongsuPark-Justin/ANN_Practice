@@ -1,0 +1,57 @@
+import pandas as pd
+from sklearn import preprocessing
+from tensorflow.keras import models
+from tensorflow.keras import layers
+import matplotlib.pyplot as plt
+from sklearn.metrics import mean_absolute_error
+
+a = pd.read_csv('/home/oms315/Desktop/winequalityred.csv')
+
+train_data = a.values[0:1000, 0:11]
+train_targets = a.values[0:1000, 11]
+test_data = a.values[1000:, 0:11]
+test_targets = a.values[1000:, 11]
+
+Scaler = preprocessing.MinMaxScaler()
+Scaler.fit(train_data)
+Scaler.fit(test_data)
+train_data = Scaler.transform(train_data)
+test_data = Scaler.transform(test_data)
+
+partial_train_data = train_data[200:]
+partial_train_targets = train_targets[200:]
+val_data = train_data[:200]
+val_targets = train_targets[:200]
+
+
+def build_model():
+    model1 = models.Sequential()
+    model1.add(layers.Dense(512, activation='relu', input_shape=(11,)))
+    model1.add(layers.Dense(512, activation='relu'))
+    model1.add(layers.Dense(512, activation='relu'))
+    model1.add(layers.Dense(1))
+    model1.compile(optimizer='adam', loss='mse', metrics=['mae'])
+    return model1
+
+
+model = build_model()
+history = model.fit(partial_train_data, partial_train_targets, batch_size=32, epochs=500, verbose=0,
+                    validation_data=(val_data, val_targets))
+
+mae_history = history.history['val_mae']
+
+prediction_test = model.predict(test_data)
+prediction_train = model.predict(partial_train_data)
+prediction_val = model.predict(val_data)
+print('MAE(test): ', mean_absolute_error(test_targets, prediction_test))
+print('MAE(train): ', mean_absolute_error(partial_train_targets, prediction_train))
+print('MAE(validation): ', mean_absolute_error(val_targets, prediction_val))
+
+print('Prediction: ', prediction_test[:10])
+print('Real Value: ', test_targets[:10])
+
+plt.plot(range(1, len(mae_history) + 1), mae_history)
+plt.xlabel('epochs')
+plt.ylabel('Validation MAE')
+plt.show()
+

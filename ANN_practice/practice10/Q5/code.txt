@@ -1,0 +1,4 @@
+def build_model():
+	x = layers.Input(shape=input_shape)
+	h = layers.Activation('relu')(layers.Conv2D(32)(x)
+	

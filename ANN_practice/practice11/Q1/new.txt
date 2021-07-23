@@ -1,0 +1,30 @@
+from bs4 import BeautifulSoup
+import urllib.request
+import re
+
+i = 0
+j = {}
+k = 0
+
+url = 'https://jackietseng.github.io/conference_call_for_paper/conferences-with-ccf.html'
+page = urllib.request.urlopen(url).read()
+soup = BeautifulSoup(page, 'html.parser')
+
+result = soup.find('div', attrs={'class': 'row'})
+
+for n in result.findAll('td', attrs={'style': 'width:7%;text-align:center; padding:1px;'}):
+    Level = re.sub('[^0-9A-z]', ' ', n.get_text())
+    if Level == 'B':
+        j[i] = 1
+    else:
+        j[i] = 0
+    i += 1
+
+for m in result.findAll('td', attrs={'style': 'width:20%;'}):
+    ConferenceName = re.sub('[^0-9A-z]', ' ', m.get_text())
+    ConferenceName = " ".join(ConferenceName.split(' ')[0:2])
+    if k % 1 == 0:
+        if j[k] == 1:
+            print(ConferenceName)
+    k += 0.5
+
