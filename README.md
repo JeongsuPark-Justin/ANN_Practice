@@ -118,7 +118,7 @@ Python, C++, Go, Java, R[2]을 지원하며, SWIG를 통해 다양한 언어 지
     - Already split into train, validation and test.
     - https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia
   
-+ Global Average Pooling 2D (GAP)
++ Global Average Pooling 2D (GAP) 
 Each response map is averaged into single neuron. Thus, the GAP output of n feature maps is n neurons regardless the width and heights of feature maps
 
 + Problem 1 : Show your codes, accuracy, and loss in the training and test set, also show the accuracy graph and loss graph in the training and validation set.
