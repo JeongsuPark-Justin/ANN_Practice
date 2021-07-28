@@ -24,7 +24,7 @@ Python, C++, Go, Java, R[2]을 지원하며, SWIG를 통해 다양한 언어 지
   - 주어진 csv화일을 읽어서 numpy 배열에 넣고, 각 행의 합과각 열의 합을 구하라.
   - Use numpy.loadtxt
 
-#### 2.2 HW2 : Breast Cancer Wisconsin Dataset
+#### 2.2 HW2 : Breast Cancer Wisconsin Dataset 
 + About Dataset
   - **Classification problem**
     - 10 input variables
