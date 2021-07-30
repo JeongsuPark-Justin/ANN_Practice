@@ -1,5 +1,5 @@
 # ANN_Practice with Tensorflow
-### 인공신경망과 딥러닝 실습 과제 모음
+### 인공신경망과 딥러닝 실습 과제 모음   
 
 ## 1. Tensorflow 에 관하여
 ### 1.1 Tensorflow 란?
